@@ -1,8 +1,11 @@
 <template>
   <button
     class="button"
-    :class="{ primary: type === 'primary', secondary: type === 'secondary' }"
     @click="handleClick"
+    :class="{
+      primary: type === 'primary',
+      secondary: type === 'secondary',
+    }"
   >
     <slot></slot>
   </button>

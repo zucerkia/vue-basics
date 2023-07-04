@@ -1,21 +1,40 @@
 <template>
-  <button class="cart-button">
+  <button @click="openModal" class="cart-button">
     <Icon class="cart-icon" name="fa-cart-shopping" size="18px" />
-    <span class="cart-badge">{{ badge }}</span>
+    <span class="cart-badge">{{ getCart.length }}</span>
   </button>
+  <teleport to="body">
+    <Modal :show="showModal" @onClose="closeModal">
+      <CartList />
+    </Modal>
+  </teleport>
 </template>
 
 <script>
 import Icon from "@/components/atoms/v-icon.vue";
+import Modal from "@/components/molecules/v-modal.vue";
+import CartList from "@/components/molecules/v-cart-list.vue";
+
 export default {
   components: {
     Icon,
+    Modal,
+    CartList,
+  },
+  methods: {
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
   },
   data() {
     return {
-      badge: 0,
+      showModal: false,
     };
   },
+  inject: ["getCart"],
 };
 </script>
 

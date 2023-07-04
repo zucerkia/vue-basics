@@ -4,28 +4,46 @@
     <h1>Productos</h1>
     <Products :products="products" />
   </main>
+  <Toast v-show="showToast">
+    <p>Se agregó un elemento al carrito</p>
+  </Toast>
 </template>
 
 <script>
 import Header from "@/components/organismos/v-header.vue";
 import Products from "@/components/organismos/v-products.vue";
+import Toast from "@/components/atoms/v-toast.vue";
+import { computed } from "vue";
 
 export default {
   name: "App",
   components: {
     Header,
     Products,
+    Toast,
+  },
+  provide() {
+    return {
+      getCart: computed(() => this.cart),
+      addToCart: this.addToCart,
+    };
+  },
+  watch: {
+    cart() {
+      this.showToast = true;
+      setTimeout(() => {
+        this.showToast = false;
+      }, 3000);
+    },
   },
   data() {
     return {
       products: [],
       cart: [],
+      showToast: false,
     };
   },
   methods: {
-    print(e) {
-      console.log(e);
-    },
     addToCart(product) {
       const newCart = [...this.cart];
       newCart.push(product);
@@ -79,6 +97,10 @@ a {
 p,
 h3 {
   margin: 0;
+}
+
+ul {
+  padding: 0;
 }
 
 .container {

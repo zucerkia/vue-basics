@@ -11,8 +11,8 @@
         </p>
       </div>
       <div class="product-footer">
-        <span>{{ product.price }}$</span>
-        <Button>Añadir al carrito</Button>
+        <span>{{ currency }}</span>
+        <Button @handleClick="addToCart(product)">Añadir al carrito</Button>
       </div>
     </div>
   </div>
@@ -24,7 +24,17 @@ export default {
   components: {
     Button,
   },
+  computed: {
+    currency() {
+      const currency = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+      return currency.format(this.product.price);
+    },
+  },
   props: ["product"],
+  inject: ["addToCart"],
 };
 </script>
 

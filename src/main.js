@@ -5,10 +5,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faShoppingCart)
+library.add([faShoppingCart, faXmark])
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
