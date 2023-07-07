@@ -24,7 +24,7 @@ export default {
     Input,
     Button,
   },
-
+  inject: ["setAuth"],
   methods: {
     login(event) {
       event.preventDefault();
@@ -45,6 +45,7 @@ export default {
         }
 
         localStorage.setItem("isAuth", "true");
+        this.setAuth(true);
         this.$router.push("/dashboard");
       }
     },

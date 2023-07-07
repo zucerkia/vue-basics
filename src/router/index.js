@@ -57,15 +57,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-    if (to.meta?.isProtected) {
-        const isAuth = Boolean(localStorage.getItem('isAuth'))
 
-        if (!isAuth) {
-            this.$router.push('/')
-        }
+    if (!to.meta?.isProtected) return true
 
-        return true
-    }
+    const isAuth = Boolean(localStorage.getItem('isAuth'))
+    if (!isAuth) return '/'
 
     return true
 })

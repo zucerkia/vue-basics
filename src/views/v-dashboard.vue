@@ -9,9 +9,12 @@ export default {
   components: {
     Button,
   },
+  inject: ["setAuth"],
   methods: {
     logout() {
       localStorage.removeItem("isAuth");
+      this.setAuth(false);
+      this.$router.push("/");
     },
   },
 };

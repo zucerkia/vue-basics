@@ -25,6 +25,8 @@ export default {
       getCart: computed(() => this.cart),
       addToCart: this.addToCart,
       getProduct: computed(() => this.products),
+      getAuth: computed(() => this.isAuth),
+      setAuth: this.setAuth,
     };
   },
   watch: {
@@ -40,9 +42,13 @@ export default {
       products: [],
       cart: [],
       showToast: false,
+      isAuth: false,
     };
   },
   methods: {
+    setAuth(value) {
+      this.isAuth = value;
+    },
     addToCart(product) {
       const newCart = [...this.cart];
       newCart.push(product);
@@ -56,6 +62,11 @@ export default {
     if (response.ok) {
       const { products } = await response.json();
       this.products = products;
+    }
+
+    const isAuth = localStorage.getItem("isAuth");
+    if (isAuth) {
+      this.isAuth = true;
     }
   },
 };

@@ -30,6 +30,7 @@ export default {
     Input,
     Button,
   },
+  inject: ["setAuth"],
   methods: {
     register(event) {
       event.preventDefault();
@@ -54,6 +55,7 @@ export default {
 
         localStorage.setItem(email, JSON.stringify({ fullName, password }));
         localStorage.setItem("isAuth", "true");
+        this.setAuth(true);
         this.$router.push("/dashboard");
       }
     },

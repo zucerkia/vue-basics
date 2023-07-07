@@ -9,10 +9,13 @@
       </li>
     </ul>
     <CartButton />
-    <Button @handleClick="goTo('/auth/login')"> Iniciar sesión </Button>
-    <Button @handleClick="goTo('/auth/register')" type="secondary">
-      Regístrate
-    </Button>
+    <div v-if="!getAuth">
+      <Button @handleClick="goTo('/auth/login')"> Iniciar sesión </Button>
+      <Button @handleClick="goTo('/auth/register')" type="secondary">
+        Regístrate
+      </Button>
+    </div>
+    <Button v-else @handleClick="goTo('/dashboard')"> Dashboard </Button>
   </nav>
 </template>
 
@@ -25,6 +28,7 @@ export default {
     Button,
     CartButton,
   },
+  inject: ["getAuth"],
   methods: {
     goTo(url) {
       this.$router.push(url);
