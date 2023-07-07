@@ -9,10 +9,11 @@
         <p>
           {{ product.description }}
         </p>
+        <span>{{ currency(product.price) }}</span>
       </div>
       <div class="product-footer">
-        <span>{{ currency }}</span>
         <Button @handleClick="addToCart(product)">Añadir al carrito</Button>
+        <router-link :to="`/product/${product.id}`">Ver mas</router-link>
       </div>
     </div>
   </div>
@@ -20,19 +21,13 @@
 
 <script>
 import Button from "@/components/atoms/v-button.vue";
+import currency from "@/mixins/currency";
+
 export default {
   components: {
     Button,
   },
-  computed: {
-    currency() {
-      const currency = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      });
-      return currency.format(this.product.price);
-    },
-  },
+  mixins: [currency],
   props: ["product"],
   inject: ["addToCart"],
 };

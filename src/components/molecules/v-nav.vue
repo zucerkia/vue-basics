@@ -2,17 +2,15 @@
   <nav class="header-nav">
     <ul class="header-links">
       <li class="link">
-        <a href="#">Sobre nosotros</a>
+        <router-link to="/about">Sobre nosotros</router-link>
       </li>
       <li class="link">
-        <a href="#">Contactenos</a>
+        <router-link to="/contact">Contáctenos</router-link>
       </li>
     </ul>
     <CartButton />
-    <Button @handleClick="print('iniciar sesion')"> Iniciar sesion </Button>
-    <Button @handleClick="print('registrase')" type="secondary">
-      Registrate
-    </Button>
+    <Button @handleClick="print('iniciar sesion')"> Iniciar sesión </Button>
+    <Button @handleClick="goToRegister" type="secondary"> Regístrate </Button>
   </nav>
 </template>
 
@@ -26,8 +24,8 @@ export default {
     CartButton,
   },
   methods: {
-    print(e) {
-      console.log(e);
+    goToRegister() {
+      this.$router.push("/register");
     },
   },
 };

@@ -1,31 +1,30 @@
 <template>
-  <Header :badge="cart.length" />
-  <main class="container">
-    <h1>Productos</h1>
-    <Products :products="products" />
-  </main>
-  <Toast v-show="showToast">
-    <p>Se agregó un elemento al carrito</p>
-  </Toast>
+  <Layout>
+    <router-view />
+  </Layout>
+  <transition name="fade">
+    <Toast v-show="showToast">
+      <p>Se agregó un elemento al carrito</p>
+    </Toast>
+  </transition>
 </template>
 
 <script>
-import Header from "@/components/organismos/v-header.vue";
-import Products from "@/components/organismos/v-products.vue";
 import Toast from "@/components/atoms/v-toast.vue";
-import { computed } from "vue";
+import Layout from "@/templates/v-layout.vue";
 
+import { computed } from "vue";
 export default {
   name: "App",
   components: {
-    Header,
-    Products,
     Toast,
+    Layout,
   },
   provide() {
     return {
       getCart: computed(() => this.cart),
       addToCart: this.addToCart,
+      getProduct: computed(() => this.products),
     };
   },
   watch: {
@@ -103,9 +102,13 @@ ul {
   padding: 0;
 }
 
-.container {
-  padding: 2rem 1rem;
-  max-width: 1024px;
-  margin: 0 auto;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateX(100%);
 }
 </style>

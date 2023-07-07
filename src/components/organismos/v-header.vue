@@ -1,8 +1,10 @@
 <template>
   <header class="header">
-    <div class="header-logo">
-      <Icon class="header-icon" name="fa-cart-shopping" size="2rem" />
-    </div>
+    <router-link to="/">
+      <div class="header-logo">
+        <Icon class="header-icon" name="fa-cart-shopping" size="2rem" />
+      </div>
+    </router-link>
     <Nav />
   </header>
 </template>

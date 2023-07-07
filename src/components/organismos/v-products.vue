@@ -1,7 +1,7 @@
 <template>
   <section class="products">
     <Product
-      v-for="(product, index) in products"
+      v-for="(product, index) in getProduct"
       :key="index"
       :product="product"
     />
@@ -16,6 +16,7 @@ export default {
     Product,
   },
   props: ["products"],
+  inject: ["getProduct"],
 };
 </script>
 
