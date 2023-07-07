@@ -9,8 +9,10 @@
       </li>
     </ul>
     <CartButton />
-    <Button @handleClick="print('iniciar sesion')"> Iniciar sesión </Button>
-    <Button @handleClick="goToRegister" type="secondary"> Regístrate </Button>
+    <Button @handleClick="goTo('/auth/login')"> Iniciar sesión </Button>
+    <Button @handleClick="goTo('/auth/register')" type="secondary">
+      Regístrate
+    </Button>
   </nav>
 </template>
 
@@ -24,8 +26,8 @@ export default {
     CartButton,
   },
   methods: {
-    goToRegister() {
-      this.$router.push("/register");
+    goTo(url) {
+      this.$router.push(url);
     },
   },
 };
